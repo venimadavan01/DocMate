@@ -53,14 +53,6 @@ User Query → Retriever → Relevant Chunks → LLM → Answer + Sources
 
 ------------------------------------------------------------------------
 
-## Project Structure
-
-DOCMATE/ ├── data/ ├── static/ │ └── styles.css ├── templates/ │ └──
-index.html ├── vectorstore/ ├── embeddings.py ├── ingest.py ├──
-rag_pipeline.py ├── utils.py ├── web_app.py ├── requirements.txt ├──
-sample_output.txt ├── README.md
-
-------------------------------------------------------------------------
 
 ## Setup Instructions
 
