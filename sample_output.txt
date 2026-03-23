@@ -1,0 +1,61 @@
+
+User: what are the necessary skills for this job
+System: Based on the provided context, some necessary skills for this job may include:
+
+* Familiarity with machine learning (ML) models and their evaluation metrics such as accuracy, precision, recall, ROC-AUC, and RMSE
+* Ability to build predictive models using various algorithms and deploy them into production environments
+* Experience in monitoring model performance and making adjustments as needed
+* Strong collaboration and communication skills for working with business teams to translate requirements into ML use cases
+* Knowledge of generative AI (GenAI) concepts and techniques, including:
+	+ Building and fine-tuning Large Language Models (LLMs) such as GPT, LLaMA, PaLM for tasks like summarization, Q&A, document generation, etc.
+	+ Implementing prompt engineering, RAG pipelines, and vector database integrations
+----------------------------------------
+
+User: what are the top 3 skills
+System: Based on the provided context, the top 3 skills are:
+
+1. Strong programming skills in Python
+2. Proficiency in classical ML algorithms (regression, trees, naive Bayes, etc.)
+3. Experience with LLM frameworks like OpenAI API, Hugging Face, and LangChain
+----------------------------------------
+
+User: what is the job location?
+System: According to the provided context, the job location is Chennai.
+----------------------------------------
+
+User: who are you
+System: Here is my answer:
+
+• I am not a human, I'm an AI designed to provide information and assist with tasks.
+• My primary function is to process text documents (PDF/TXT) and answer questions about the document content using Retrieval-Augmented Generation (RAG) techniques.
+• I was created to help users by providing relevant citations/references from the source material.
+----------------------------------------
+
+
+User: explain problem domain and solution domain partitioning 5 marks
+System: Here's a breakdown of the problem domain and solution domain partitioning:
+
+**Problem Domain**
+
+* Defines the problem or opportunity that the system aims to solve
+* Identifies the business requirements, user needs, constraints, and expected outcomes
+
+Example: "Monitor soil moisture and automate irrigation."
+
+**Solution Domain**
+
+* Describes the technologies chosen to solve the problem
+* Details the architecture layers, software and hardware elements, networking and security, and data handling methods
+
+Components of the Solution Domain:
+
+• Devices and sensors
+• Communication protocols
+• Cloud or storage platform
+• Analytics or applications
+• Security and management layers
+
+When building an IoT architecture, the system is conceptually divided into these two parts: Problem Domain and Solution Domain.
+
+Note: The total marks for this answer are 5.
+----------------------------------------
