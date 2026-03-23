@@ -1,0 +1,113 @@
+
+
+
+
+
+
+
+GenAI Interview Assignment: 
+Intelligent Document Q&A System
+
+
+
+
+
+
+
+Table of Contents
+GenAI Interview Assignment: Intelligent Document Q&A System	1
+Assignment Overview	2
+Objective:	2
+Requirements	2
+Suggested Implementation Approach	3
+Example Use Case	3
+Deliverables	4
+Evaluation Criteria	4
+Submission Guidelines	4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Assignment Overview
+Build a document-based question-answering system using open-source Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) techniques.
+Technologies: Python, Open-source LLMs, Vector databases
+Objective:
+Create a system that can:
+* Ingest and process text documents (PDF/TXT)
+* Answer questions about the document content using RAG
+* Provide relevant citations/references from the source material
+* Demonstrate understanding of prompt engineering and LLM integration
+Requirements
+Functional Requirements
+The system must support document processing by accepting at least one common document format, such as PDF or TXT. It should enable question answering by allowing users to ask natural language questions and receive answers derived directly from the document’s content. To ensure transparency, the system must provide source attribution, clearly indicating which part of the document was used to generate each answer. An interactive interface is required for user interaction, which can be implemented as either a simple command-line interface (CLI) or a basic web-based interface. 
+Technical Requirements
+* Use free, open-source resources only: 
+o LLMs: Ollama (Llama 3.2, Mistral, etc.) OR Hugging Face models
+o Vector DB: ChromaDB, FAISS, or similar
+o Framework: LangChain or LlamaIndex (optional but recommended)
+* Include a requirements.txt file
+* Provide clear setup and execution instructions in a README
+* Code should be modular and well-commented
+Non-Functional Requirements
+The code should be clean, readable, and adhere to standard Python best practices. Proper error handling must be implemented to manage common failure scenarios, along with basic input validation to ensure robustness. The system should be optimized to deliver responses within a reasonable timeframe, with each query completing in under 30 seconds.
+
+Suggested Implementation Approach
+PhaseTitleTasksPhase 1SetupInstall Ollama locally or configure Hugging Face access. Set up the Python environment with required libraries. Create the initial project structure.Phase 2Document ProcessingImplement document loading for PDF and TXT files. Split documents into manageable chunks. Generate vector embeddings from the text. Store the embeddings in a vector database.Phase 3RAG ImplementationImplement similarity search using the vector database. Create a prompt template for context-aware question answering. Integrate the LLM to generate responses. Add a mechanism to cite the source content used in each answer.Phase 4Interface & TestingBuild a simple user interface, preferably a CLI for faster development. Test the system using sample queries. Document the setup and usage instructions. Clean up the codebase and add appropriate comments.Example Use Case
+You can test your system with any publicly available document. 
+Suggestions: Wikipedia article on a technical topic, Company annual report (publicly available), Research paper abstract and Product documentation.
+Sample Interactions:
+User: "What are the main topics covered in this document?"
+System: [Provides summary with references to specific sections]
+
+User: "Explain [specific concept] mentioned in the document"
+System: [Provides explanation using relevant context from the document]
+Deliverables
+Required Files
+1. Source Code: All Python scripts/modules
+2. requirements.txt: List of dependencies with versions
+3. README.md: Including: 
+o Setup instructions
+o How to run the application
+o Example usage
+o Architecture overview
+o Assumptions and limitations
+4. Sample Document: Include the document you used for testing
+5. Sample Output: Screenshots or text file showing 3-5 example Q&A interactions
+Optional (Bonus Points)
+* Streamlit or Gradio web interface
+* Support for multiple document formats
+* Conversation history/context maintenance
+* Evaluation metrics (relevance, accuracy)
+* Unit tests
+* Comparison of different chunking strategies or LLM models
+Evaluation Criteria
+CriteriaWeightWhat We're Looking ForFunctionality30%Does it work as specified? Handles edge cases?Code Quality25%Clean, readable, well-structured, commentedRAG Implementation20%Proper chunking, embedding, retrieval logicDocumentation15%Clear README, easy to set up and runProblem Solving10%Creative solutions, handling of limitationsSample Code Patterns
+Most open-source RAG examples are available on GitHub,  you can reference them but write your own implementation.
+Submission Guidelines
+Code Repository: Create a GitHub repository (public or private with access)
+Share: Provide the GitHub repository link
+Tips for Success
+* Start Simple: Get a basic version working first, then enhance
+* Test Incrementally: Test each component before integration
+* Document As You Go: Write README sections while building
+* Time Management: Don't over-engineer, a working simple solution > incomplete complex one
+* Ask Questions: If requirements are unclear, document your assumptions
+Questions?
+If you have clarifying questions about the assignment, please reach out. We're happy to clarify requirements.
+
+Good luck! We're excited to see your solution.
+
+
