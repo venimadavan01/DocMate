@@ -1,0 +1,109 @@
+/* ------------------------------
+   Global Styles
+------------------------------ */
+body {
+    background-color: #f4f6f9;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ------------------------------
+   Chat Container
+------------------------------ */
+#chatBox {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------------
+   Message Layout
+------------------------------ */
+.message {
+    display: flex;
+    align-items: flex-end;
+    margin: 10px 0;
+}
+
+/* ------------------------------
+   User Message (Right)
+------------------------------ */
+.user-msg {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-msg .bubble {
+    background: #0d6efd;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 15px 15px 0 15px;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+/* ------------------------------
+   Bot Message (Left)
+------------------------------ */
+.bot-msg {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.bot-msg .bubble {
+    background: #e9ecef;
+    color: #333;
+    padding: 10px 14px;
+    border-radius: 15px 15px 15px 0;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+/* ------------------------------
+   Avatar
+------------------------------ */
+.avatar {
+    font-size: 20px;
+    margin: 0 8px;
+}
+
+/* ------------------------------
+   Sources
+------------------------------ */
+.source-btn {
+    font-size: 12px;
+    color: #0d6efd;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.source-text {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: 10px;
+    max-width: 60%;
+}
+
+/* ------------------------------
+   Loader
+------------------------------ */
+#uploadLoader {
+    margin-top: 15px;
+    padding: 10px;
+    background: #eef;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ------------------------------
+   Input & Button
+------------------------------ */
+input,
+button {
+    border-radius: 20px !important;
+}
