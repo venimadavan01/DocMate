@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DocMate - Document QA Assistant</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h3>DocMate</h3>
+        <p class="text-muted">AI-Powered Document Assistant</p>
+    </div>
+
+    <!-- ============================= -->
+    <!-- START SCREEN -->
+    <!-- ============================= -->
+    <div id="startScreen" class="text-center">
+        <div class="card shadow-sm p-4">
+            <h5 class="mb-3">Upload your document</h5>
+
+            <input type="file" id="fileInput" class="form-control" multiple accept=".pdf,.txt,.docx">
+
+            <button onclick="uploadFiles()" class="btn btn-primary mt-3">
+                <i class="bi bi-upload"></i> Upload & Start Chat
+            </button>
+
+            <!-- Loader -->
+            <div id="uploadLoader" class="loader mt-3" style="display:none;">
+                ⏳ Processing document...
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- CHAT SCREEN -->
+    <!-- ============================= -->
+    <div id="chatScreen" style="display:none;">
+
+        <!-- Chat Box -->
+        <div id="chatBox" class="card shadow-sm p-3 mb-3" style="height: 450px; overflow-y: auto;"></div>
+
+        <!-- Typing Indicator -->
+        <div id="loading" class="text-muted mb-2" style="display:none;">
+            🤖 Assistant is typing...
+        </div>
+
+        <!-- Input -->
+        <div class="input-group">
+            <input type="text" id="query" class="form-control" placeholder="Ask a question...">
+            <button onclick="askQuestion()" class="btn btn-success">
+                <i class="bi bi-send"></i>
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
+<script>
+
+async function uploadFiles() {
+    const files = document.getElementById("fileInput").files;
+
+    if (files.length === 0) {
+        alert("Please select a file");
+        return;
+    }
+
+    const formData = new FormData();
+    for (let file of files) {
+        formData.append("files", file);
+    }
+
+    const loader = document.getElementById("uploadLoader");
+    loader.style.display = "block";
+
+    try {
+        const res = await fetch("/upload", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await res.json();
+        loader.style.display = "none";
+
+        if (data.status === "error") {
+            alert("❌ " + data.message);
+            return;
+        }
+
+        // Switch UI
+        document.getElementById("startScreen").style.display = "none";
+        document.getElementById("chatScreen").style.display = "block";
+
+    } catch (err) {
+        loader.style.display = "none";
+        alert("Upload failed");
+        console.error(err);
+    }
+}
+
+
+async function askQuestion() {
+    const input = document.getElementById("query");
+    const query = input.value.trim();
+    if (!query) return;
+
+    const chatBox = document.getElementById("chatBox");
+
+    // User message
+    chatBox.innerHTML += `
+        <div class="message user-msg">
+            <div class="avatar">👤 You: </div>
+            <div class="bubble">${query}</div>
+        </div>
+    `;
+
+    input.value = "";
+
+    // Show typing
+    document.getElementById("loading").style.display = "block";
+
+    try {
+        const res = await fetch("/ask", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ query })
+        });
+
+        const data = await res.json();
+
+        document.getElementById("loading").style.display = "none";
+
+        // Bot message
+        chatBox.innerHTML += `
+            <div class="message bot-msg">
+                <div class="avatar">🤖 Assistant: </div>
+                <div class="bubble">${formatAnswer(data.answer)}</div>
+            </div>
+        `;
+
+        // Sources
+        const msgId = Date.now();
+        data.sources.slice(0, 3).forEach((src, index) => {
+            const sid = `msg${msgId}_src${index}`;
+
+            chatBox.innerHTML += `
+                <div class="bot-msg">
+                    <button class="source-btn" onclick="toggle('${sid}')">
+                        📎 Source ${index + 1}
+                    </button>
+                    <div id="${sid}" class="source-text" style="display:none;">
+                        ${src.text || `Page: ${src.page}`}
+                    </div>
+                </div>
+            `;
+        });
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    } catch (err) {
+        document.getElementById("loading").style.display = "none";
+        console.error(err);
+    }
+}
+
+
+function toggle(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "none" ? "block" : "none";
+}
+
+
+function formatAnswer(text) {
+    return text
+        .replace(/\n/g, "<br>")
+        .replace(/- /g, "<br>• ");
+}
+
+
+// Enter key support
+document.getElementById("query").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        askQuestion();
+    }
+});
+
+</script>
+
+</body>
+</html>
